@@ -49,7 +49,6 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
     };
 
     // Update Handler
-
     const handleUpdate = (data: FormData) => {
         updateTodo(todo.id, data.text);
         setIsEditing(false);

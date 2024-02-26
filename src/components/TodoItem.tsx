@@ -11,7 +11,7 @@ import { RiCheckboxLine, RiDeleteBin2Line, RiEdit2Line, RiRecycleLine } from 're
 
 // Validation Schema for the Todo Form
 const schema = z.object({
-    text: z.string().min(3, 'Todo must be at least 3 characters long').max(100, 'Todo must be at most 100 characters long').nonempty('Todo must not be empty')
+    text: z.string().min(3, 'Todo must be at least 3 characters long').max(100, 'Todo must be at most 100 characters long')
 });
 
 // FormData type for the Todo Form
@@ -75,9 +75,9 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
                 <form onSubmit={handleSubmit(handleUpdate)} className='flex w-full'>
                     <Input
                         {...register('text')}
-                        className='bg-zinc-800 w-full text-white placeholder-gray-400 focus:ring-0 focus:border-0 focus:outline-none'
+                        className='w-full text-white placeholder-gray-400 bg-zinc-800 focus:ring-0 focus:border-0 focus:outline-none'
                     />
-                    <Button type='submit' className='p-2 px-4 bg-blue-500 ml-2'>
+                    <Button type='submit' className='p-2 px-4 ml-2 bg-blue-500'>
                         Update
                     </Button>
                     {errors.text && <p className='text-sm text-red-500'>{errors.text.message}</p>}
@@ -86,7 +86,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
                 <>
                     <div className='flex flex-col w-full'>
                         {/* Todo Text */}
-                        <div className='border-b border-zinc-600 py-2 text-base font-semibold'>
+                        <div className='py-2 text-base font-semibold border-b border-zinc-600'>
                             <p className={`flex-1 text-white ${todo.isCompleted ? 'line-through text-gray-500' : ''}`}>
                                 {todo.text}
                             </p>
@@ -96,12 +96,12 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
                             <div>
                                 {
                                     todo.isCompleted ? (
-                                        <Button onClick={handleToggle} className='p-0 bg-transparent hover:bg-transparent text-white flex gap-x-1 items-center text-base'>
+                                        <Button onClick={handleToggle} className='flex items-center p-0 text-base text-white bg-transparent hover:bg-transparent gap-x-1'>
                                             <RiRecycleLine size={18} />
                                             Mark Undone
                                         </Button>
                                     ) : (
-                                        <Button onClick={handleToggle} className='p-0 bg-transparent hover:bg-transparent text-white flex gap-x-1 items-center text-base'>
+                                        <Button onClick={handleToggle} className='flex items-center p-0 text-base text-white bg-transparent hover:bg-transparent gap-x-1'>
                                             <RiCheckboxLine size={18} />
                                             Mark as Completed
                                         </Button>
@@ -109,11 +109,11 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
                                 }
                             </div>
                             <div className='flex items-center gap-x-4 '>
-                                <Button onClick={handleEdit} className='p-0  bg-transparent hover:bg-transparent text-white flex gap-x-1 items-center text-base'>
+                                <Button onClick={handleEdit} className='flex items-center p-0 text-base text-white bg-transparent hover:bg-transparent gap-x-1'>
                                     <RiEdit2Line size={18} />
                                     Edit
                                 </Button>
-                                <Button onClick={handleDelete} className='p-0 bg-transparent hover:bg-transparent text-red-500 flex gap-x-1 items-center text-base'>
+                                <Button onClick={handleDelete} className='flex items-center p-0 text-base text-red-500 bg-transparent hover:bg-transparent gap-x-1'>
                                     <RiDeleteBin2Line size={18} />
                                     Delete
                                 </Button>
